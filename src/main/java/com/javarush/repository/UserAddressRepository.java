@@ -1,6 +1,7 @@
 package com.javarush.repository;
 
 import com.javarush.entity.User;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -8,14 +9,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class UserAddressRepository {
 
     private final SessionFactory sessionFactory;
-
-    public UserAddressRepository(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
 
     public List<User> getUsersByCity(String city) {
         Session session = sessionFactory.getCurrentSession();

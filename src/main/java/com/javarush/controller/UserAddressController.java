@@ -2,6 +2,7 @@ package com.javarush.controller;
 
 import com.javarush.entity.User;
 import com.javarush.service.UserAddressService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,13 +12,10 @@ import java.util.List;
 
 @RestController()
 @RequestMapping(value = "/users/user/address")
+@RequiredArgsConstructor
 public class UserAddressController {
 
     private final UserAddressService userAddressService;
-
-    public UserAddressController(UserAddressService userAddressService) {
-        this.userAddressService = userAddressService;
-    }
 
     @GetMapping(value = "/city/{city}")
     public List<User> getAllByCity(@PathVariable String city) {

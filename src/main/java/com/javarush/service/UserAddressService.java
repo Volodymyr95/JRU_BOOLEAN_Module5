@@ -2,19 +2,17 @@ package com.javarush.service;
 
 import com.javarush.entity.User;
 import com.javarush.repository.UserAddressRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserAddressService {
 
     private final UserAddressRepository userAddressRepository;
-
-    public UserAddressService(UserAddressRepository userAddressRepository) {
-        this.userAddressRepository = userAddressRepository;
-    }
 
     @Transactional
     public List<User> getUsersByCityName(String city) {

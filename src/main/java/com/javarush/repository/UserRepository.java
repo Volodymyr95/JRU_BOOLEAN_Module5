@@ -1,6 +1,7 @@
 package com.javarush.repository;
 
 import com.javarush.entity.User;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -13,13 +14,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@RequiredArgsConstructor
 public class UserRepository {
-
     private final SessionFactory sessionFactory;
-
-    public UserRepository(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
 
     public List<User> getAll() {
         Session session = sessionFactory.getCurrentSession();
