@@ -7,6 +7,7 @@ import com.javarush.entity.User;
 import com.javarush.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class UserController {
 
     @PostMapping(value = "/user")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createUser(@RequestBody NewUserDto user) {
+    public void createUser(@RequestBody @Validated NewUserDto user) {
         userService.save(user);
     }
 
