@@ -5,7 +5,6 @@ import com.javarush.dto.UserDto;
 import com.javarush.dto.UserInfoDto;
 import com.javarush.entity.User;
 import com.javarush.exceptions.UserNotFoundException;
-import com.javarush.exceptions.UserNotValidExceptions;
 import com.javarush.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -31,9 +30,6 @@ public class UserService {
 
     @Transactional
     public void save(NewUserDto user) {
-        if (user.getEmail().isEmpty()) {
-            throw new UserNotValidExceptions("Email cannot be empty!");
-        }
         userRepository.save(modelMapper.map(user, User.class));
     }
 
@@ -44,7 +40,7 @@ public class UserService {
 
     @Transactional
     public void deleteUser(long id) {
-        isUserExist(id);
+        isExist(id);
         userRepository.delete(id);
     }
 
@@ -66,10 +62,8 @@ public class UserService {
         return modelMapper.map(userRepository.getByEmail(email).orElseThrow(() -> new UserNotFoundException()), UserDto.class);
     }
 
-    private void isUserExist(long id) {
-        if (userRepository.getById(id) == null) {
-            throw new UserNotFoundException();
-        }
+    public void isExist(Long userId) {
+        userRepository.getById(userId).orElseThrow(() -> new UserNotFoundException());
     }
 }
 

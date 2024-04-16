@@ -1,0 +1,10 @@
+{
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "max.277@gmail.com",
+  "age": 0,
+  "address": {
+    "city": "London",
+    "street": "London1"
+  }
+}

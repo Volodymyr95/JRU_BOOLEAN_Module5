@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "address")
+@Table(name = "address", uniqueConstraints = {@UniqueConstraint(columnNames = {"street", "streetNumber"})})
 public class Address {
 
     @Id
@@ -18,6 +18,8 @@ public class Address {
     private String city;
 
     private String street;
+
+    private String streetNumber;
 
     @OneToMany(mappedBy = "address", fetch = FetchType.EAGER)
     @JsonBackReference

@@ -22,4 +22,15 @@ public class NewUserDto {
     private int age;
     private AddressDto address;
 
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{ ");
+        sb.append("firstName='").append(firstName).append('\'');
+        sb.append(", lastName='").append(lastName).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", age=").append(age);
+        sb.append('}');
+        return sb.toString();
+    }
 }

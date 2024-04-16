@@ -30,6 +30,14 @@ public class UserAddressRepository {
                 .getResultList();
     }
 
+    public List<User> getUsersByStreetAndStreetNumber(String street, String streetNumber) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        return currentSession.createQuery("SELECT DISTINCT u from User u JOIN FETCH u.address a WHERE a.street = :street AND a.streetNumber = :streetNumber ")
+                .setParameter("street", street)
+                .setParameter("streetNumber", streetNumber)
+                .getResultList();
+    }
+
     public List<User> getUsersByCityAndStreet(String city, String street) {
         return sessionFactory.getCurrentSession()
                 .createQuery("SELECT DISTINCT u FROM User u JOIN FETCH u.address a WHERE a.city = :city AND a.street = :street")
